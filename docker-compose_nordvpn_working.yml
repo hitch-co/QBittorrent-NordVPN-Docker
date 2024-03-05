@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  nordvpn:
+    image: bubuntux/nordvpn:v3.12.2
+    container_name: nord_wireguard
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    environment:
+      - TOKEN=${NORDVPN_TOKEN}
+      - CONNECT=United_States
+      - TECHNOLOGY=NordLynx
+      - NETWORK=192.186.1.0/24
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=1
+    restart: unless-stopped
